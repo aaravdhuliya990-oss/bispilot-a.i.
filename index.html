@@ -3,883 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="description" content="BizPilot AI is a business productivity workspace with tools for communication, marketing, HR, product descriptions and planning.">
 <meta name="theme-color" content="#10264b">
-
 <meta property="og:title" content="BizPilot AI | Business Workspace">
 <meta property="og:description" content="One Platform. Every Business. Smarter Work.">
 <meta property="og:type" content="website">
-
-<title>BizPilot AI | Business Intelligence Workspace</title>
-
+<title>BizPilot AI | Business Workspace</title>
 <style>
-:root {
-  --navy:#10264b;
-  --navy-light:#173f78;
-  --blue:#2563eb;
-  --blue-dark:#174bb6;
-  --light:#f3f6fc;
-  --white:#fff;
-  --text:#17243b;
-  --muted:#718096;
-  --border:#e4eaf3;
-  --green:#16865a;
-  --shadow:0 12px 30px #152c5010;
-}
-
-* { box-sizing:border-box; }
-
-html { scroll-behavior:smooth; }
-
-body {
-  margin:0;
-  font-family:Inter,Arial,sans-serif;
-  color:var(--text);
-  background:var(--light);
-}
-
-button,input,textarea,select { font:inherit; }
-button { cursor:pointer; }
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline:3px solid #93baff;
-  outline-offset:3px;
-}
-
-.navbar {
-  min-height:70px;
-  padding:12px 7%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  background:white;
-  border-bottom:1px solid var(--border);
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-
-.logo {
-  font-size:23px;
-  font-weight:800;
-  color:var(--navy);
-  letter-spacing:-1px;
-  white-space:nowrap;
-}
-
-.logo span { color:var(--blue); }
-
-.navlinks {
-  display:flex;
-  gap:22px;
-  align-items:center;
-}
-
-.navlinks a {
-  color:#53627a;
-  text-decoration:none;
-  font-size:14px;
-  cursor:pointer;
-}
-
-.navlinks a:hover { color:var(--blue); }
-
-.btn {
-  border:0;
-  background:var(--blue);
-  color:white;
-  padding:12px 20px;
-  border-radius:8px;
-  font-weight:600;
-  transition:background .2s,transform .2s;
-}
-
-.btn:hover {
-  background:var(--blue-dark);
-  transform:translateY(-1px);
-}
-
-.btn-outline {
-  background:white;
-  color:var(--navy);
-  border:1px solid var(--border);
-}
-
-.btn-outline:hover {
-  background:#edf3ff;
-  color:var(--blue);
-}
-
-.hero {
-  background:linear-gradient(125deg,var(--navy),var(--navy-light));
-  color:white;
-  padding:95px 8%;
-  text-align:center;
-}
-
-.eyebrow {
-  color:#a9cbff;
-  letter-spacing:2px;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.hero h1 {
-  font-size:clamp(36px,5vw,59px);
-  line-height:1.12;
-  max-width:850px;
-  margin:20px auto;
-}
-
-.hero p {
-  color:#d4e1f5;
-  max-width:620px;
-  margin:0 auto 30px;
-  line-height:1.8;
-}
-
-.hero .btn { padding:15px 27px; }
-
-.hero-note {
-  color:#b9cbe4;
-  font-size:12px;
-  margin-top:18px;
-}
-
-.section {
-  padding:65px 7%;
-  max-width:1250px;
-  margin:auto;
-}
-
-.section-heading {
-  text-align:center;
-  margin-bottom:35px;
-}
-
-.section-heading h2 { font-size:30px; }
-.section-heading p { color:var(--muted); }
-
-.grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:20px;
-}
-
-.card {
-  background:white;
-  padding:25px;
-  border:1px solid var(--border);
-  border-radius:13px;
-  transition:.2s;
-  min-width:0;
-}
-
-.card:hover {
-  transform:translateY(-3px);
-  box-shadow:var(--shadow);
-}
-
-.card-icon {
-  width:43px;
-  height:43px;
-  display:grid;
-  place-items:center;
-  background:#edf3ff;
-  color:var(--blue);
-  border-radius:10px;
-  font-size:22px;
-}
-
-.card p {
-  color:var(--muted);
-  line-height:1.6;
-  font-size:14px;
-}
-
-.workspace {
-  display:none;
-  max-width:1300px;
-  margin:30px auto;
-  padding:0 20px;
-}
-
-.workspace.active { display:block; }
-
-.dash-layout {
-  display:grid;
-  grid-template-columns:225px minmax(0,1fr);
-  gap:22px;
-}
-
-.sidebar,.main-panel {
-  background:white;
-  border:1px solid var(--border);
-  border-radius:13px;
-}
-
-.sidebar {
-  padding:20px;
-  align-self:start;
-  position:sticky;
-  top:90px;
-}
-
-.sidebar h3 {
-  font-size:15px;
-  margin-top:5px;
-}
-
-.side-link {
-  width:100%;
-  padding:12px;
-  margin:4px 0;
-  border:0;
-  background:white;
-  text-align:left;
-  border-radius:7px;
-  color:#53627a;
-}
-
-.side-link:hover,.side-link.active {
-  background:#edf3ff;
-  color:var(--blue);
-}
-
-.main-panel {
-  padding:28px;
-  min-width:0;
-}
-
-.dash-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:25px;
-}
-
-.dash-header h1 { margin:0 0 8px; }
-
-.muted { color:var(--muted); }
-
-.status {
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  color:var(--green);
-  background:#eaf8f1;
-  padding:8px 12px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:600;
-}
-
-.status-dot {
-  width:7px;
-  height:7px;
-  background:var(--green);
-  border-radius:50%;
-}
-
-.stats {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:14px;
-  margin-bottom:28px;
-}
-
-.stat {
-  background:#f7f9fd;
-  padding:18px;
-  border-radius:10px;
-  border:1px solid var(--border);
-}
-
-.stat strong {
-  display:block;
-  font-size:25px;
-  margin-top:10px;
-  color:var(--navy);
-}
-
-.tool-card {
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.tool-card .btn {
-  align-self:flex-start;
-  margin-top:5px;
-}
-
-.tool-area {
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:22px;
-}
-
-label {
-  display:block;
-  margin:17px 0 8px;
-  font-weight:600;
-  font-size:14px;
-}
-
-select,textarea,input {
-  width:100%;
-  padding:13px;
-  border:1px solid #d8e1ef;
-  border-radius:8px;
-  background:white;
-  color:var(--text);
-}
-
-textarea {
-  min-height:130px;
-  resize:vertical;
-  line-height:1.6;
-}
-
-.generate { margin-top:20px; }
-
-.output {
-  display:none;
-  margin-top:22px;
-  padding:18px;
-  background:#f2f6ff;
-  border:1px solid #dce7fb;
-  border-radius:10px;
-  white-space:pre-wrap;
-  line-height:1.7;
-  overflow-wrap:anywhere;
-}
-
-.output-heading {
-  font-weight:700;
-  color:var(--navy);
-  margin-bottom:12px;
-}
-
-.feedback {
-  min-height:22px;
-  margin-top:10px;
-  font-size:13px;
-  color:var(--green);
-}
-
-.notice {
-  background:#fff8e8;
-  border:1px solid #f2dfae;
-  padding:13px;
-  border-radius:8px;
-  font-size:12px;
-  color:#72551a;
-  margin-top:18px;
-  line-height:1.6;
-}
-
-.hidden { display:none !important; }
-
-footer {
-  text-align:center;
-  padding:35px 15px;
-  background:var(--navy);
-  color:#d5e1f3;
-  font-size:13px;
-  margin-top:45px;
-}
-
-footer .logo { color:white; }
-
-footer a {
-  color:#d5e1f3;
-  text-decoration:none;
-}
-
-footer a:hover { text-decoration:underline; }
-
-@media(max-width:850px) {
-  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .dash-layout { grid-template-columns:1fr; }
-  .sidebar {
-    position:static;
-    display:flex;
-    flex-wrap:wrap;
-    gap:5px;
-  }
-  .sidebar h3 { width:100%; }
-  .side-link { width:auto; }
-}
-
-@media(max-width:550px) {
-  .navbar { padding:12px 15px; }
-  .navlinks { gap:10px; }
-  .navlinks a { font-size:12px; }
-  .navlinks .hide-mobile { display:none; }
-  .navlinks .btn { padding:10px 12px; font-size:12px; }
-  .logo { font-size:20px; }
-  .hero { padding:65px 20px; }
-  .grid,.stats { grid-template-columns:1fr; }
-  .section { padding:45px 18px; }
-  .main-panel { padding:16px; }
-  .tool-area { padding:15px; }
-  .sidebar { padding:12px; }
-  .side-link { font-size:12px; padding:10px; }
-  .dash-header h1 { font-size:25px; }
-}
+:root{--navy:#10264b;--navy-light:#173f78;--blue:#2563eb;--blue-dark:#174bb6;--light:#f3f6fc;--white:#fff;--text:#17243b;--muted:#718096;--border:#e4eaf3;--green:#16865a;--shadow:0 12px 30px #152c5010}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--text);background:var(--light)}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #93baff;outline-offset:3px}
+.navbar{min-height:70px;padding:12px 7%;display:flex;justify-content:space-between;align-items:center;gap:15px;background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}.logo{font-size:23px;font-weight:800;color:var(--navy);letter-spacing:-1px;white-space:nowrap;text-decoration:none}.logo span,footer .logo span{color:var(--blue)}.navlinks{display:flex;gap:22px;align-items:center}.navlinks a{color:#53627a;text-decoration:none;font-size:14px}.navlinks a:hover{color:var(--blue)}
+.btn{border:0;background:var(--blue);color:white;padding:12px 20px;border-radius:8px;font-weight:600;transition:background .2s,transform .2s}.btn:hover{background:var(--blue-dark);transform:translateY(-1px)}.btn-outline{background:white;color:var(--navy);border:1px solid var(--border)}.btn-outline:hover{background:#edf3ff;color:var(--blue)}
+.hero{background:linear-gradient(125deg,var(--navy),var(--navy-light));color:white;padding:95px 8%;text-align:center}.eyebrow{color:#a9cbff;letter-spacing:2px;font-size:12px;font-weight:bold}.hero h1{font-size:clamp(36px,5vw,59px);line-height:1.12;max-width:850px;margin:20px auto}.hero p{color:#d4e1f5;max-width:620px;margin:0 auto 30px;line-height:1.8}.hero .btn{padding:15px 27px}.hero-note{color:#b9cbe4;font-size:12px;margin-top:18px}
+.section{padding:65px 7%;max-width:1250px;margin:auto}.section-heading{text-align:center;margin-bottom:35px}.section-heading h2{font-size:30px}.section-heading p{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.card{background:white;padding:25px;border:1px solid var(--border);border-radius:13px;transition:.2s;min-width:0}.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.card-icon{width:43px;height:43px;display:grid;place-items:center;background:#edf3ff;color:var(--blue);border-radius:10px;font-size:22px}.card p{color:var(--muted);line-height:1.6;font-size:14px}
+.workspace{display:none;max-width:1300px;margin:30px auto;padding:0 20px}.workspace.active{display:block}.dash-layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:22px}.sidebar,.main-panel{background:white;border:1px solid var(--border);border-radius:13px}.sidebar{padding:20px;align-self:start;position:sticky;top:90px}.sidebar h3{font-size:15px;margin-top:5px}.side-link{width:100%;padding:12px;margin:4px 0;border:0;background:white;text-align:left;border-radius:7px;color:#53627a}.side-link:hover,.side-link.active{background:#edf3ff;color:var(--blue)}.main-panel{padding:28px;min-width:0}.dash-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:25px}.dash-header h1,.dash-header h2{margin:0 0 8px}.muted{color:var(--muted)}.status{display:inline-flex;align-items:center;gap:7px;color:var(--green);background:#eaf8f1;padding:8px 12px;border-radius:20px;font-size:12px;font-weight:600}.status-dot{width:7px;height:7px;background:var(--green);border-radius:50%}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:28px}.stat{background:#f7f9fd;padding:18px;border-radius:10px;border:1px solid var(--border)}.stat strong{display:block;font-size:25px;margin-top:10px;color:var(--navy)}.tool-card{display:flex;flex-direction:column;gap:8px}.tool-card .btn{align-self:flex-start;margin-top:5px}.tool-area{border:1px solid var(--border);border-radius:12px;padding:22px}label{display:block;margin:17px 0 8px;font-weight:600;font-size:14px}select,textarea,input{width:100%;padding:13px;border:1px solid #d8e1ef;border-radius:8px;background:white;color:var(--text)}textarea{min-height:130px;resize:vertical;line-height:1.6}.generate{margin-top:20px}.output{display:none;margin-top:22px;padding:18px;background:#f2f6ff;border:1px solid #dce7fb;border-radius:10px;white-space:pre-wrap;line-height:1.7;overflow-wrap:anywhere}.output-heading{font-weight:700;color:var(--navy);margin-bottom:12px}.feedback{min-height:22px;margin-top:10px;font-size:13px;color:var(--green)}.notice{background:#fff8e8;border:1px solid #f2dfae;padding:13px;border-radius:8px;font-size:12px;color:#72551a;margin-top:18px;line-height:1.6}.hidden,[hidden]{display:none!important}footer{text-align:center;padding:35px 15px;background:var(--navy);color:#d5e1f3;font-size:13px;margin-top:45px}footer .logo{color:white}footer a{color:#d5e1f3;text-decoration:none}footer a:hover{text-decoration:underline}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-layout{grid-template-columns:1fr}.sidebar{position:static;display:flex;flex-wrap:wrap;gap:5px}.sidebar h3{width:100%}.side-link{width:auto}}
+@media(max-width:550px){.navbar{padding:12px 15px}.navlinks{gap:10px}.navlinks a{font-size:12px}.navlinks .hide-mobile{display:none}.navlinks .btn{padding:10px 12px;font-size:12px}.logo{font-size:20px}.hero{padding:65px 20px}.grid,.stats{grid-template-columns:1fr}.section{padding:45px 18px}.main-panel{padding:16px}.tool-area{padding:15px}.sidebar{padding:12px}.side-link{font-size:12px;padding:10px}.dash-header h1{font-size:25px}}
 </style>
 </head>
-
 <body>
-
 <header class="navbar">
-  <a class="logo" href="#" onclick="showHome();return false;"
-     aria-label="BizPilot AI home">
-    BizPilot <span>AI.</span>
-  </a>
-
+  <a class="logo" href="#" onclick="showHome();return false" aria-label="BizPilot AI home">BizPilot <span>AI.</span></a>
   <nav class="navlinks" aria-label="Main navigation">
-    <a href="#" onclick="showHome();return false;">Home</a>
-    <a class="hide-mobile" href="#industries">Industries</a>
-    <a class="hide-mobile" href="#features">Features</a>
-    <a href="#" onclick="showDashboard();return false;">Dashboard</a>
+    <a href="#" onclick="showHome();return false">Home</a><a class="hide-mobile" href="#industries">Industries</a><a class="hide-mobile" href="#features">Features</a><a href="#" onclick="showDashboard();return false">Dashboard</a>
     <button class="btn" onclick="showDashboard()">Get Started</button>
   </nav>
 </header>
-
 <section id="home">
-
-  <section class="hero">
-    <div class="eyebrow">THE BUSINESS PRODUCTIVITY WORKSPACE</div>
-
-    <h1>Run Your Business Smarter</h1>
-
-    <p>
-      Discover a smarter way to organise everyday business tasks.
-      One workspace for writing, planning, customer communication
-      and productivity.
-    </p>
-
-    <button class="btn" onclick="showDashboard()">
-      Explore BizPilot AI →
-    </button>
-
-    <div class="hero-note">
-      Explore our free business assistant prototype.
-    </div>
-  </section>
-
-  <section class="section" id="features">
-    <div class="section-heading">
-      <h2>Everything Your Business Needs</h2>
-      <p>Practical tools for everyday business operations.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="card-icon">✉</div>
-        <h3>Business Communication</h3>
-        <p>Create professional emails and customer replies.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">📢</div>
-        <h3>Marketing Assistant</h3>
-        <p>Prepare promotional messages and marketing drafts.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">📊</div>
-        <h3>Business Planning</h3>
-        <p>Organise business ideas and planning documents.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">🛍</div>
-        <h3>Product Assistant</h3>
-        <p>Prepare product descriptions and FAQs.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">👥</div>
-        <h3>HR Assistant</h3>
-        <p>Draft job descriptions and interview questions.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">🌐</div>
-        <h3>Global Workspace</h3>
-        <p>Explore tools for businesses across industries.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="industries">
-    <div class="section-heading">
-      <h2>One Platform. Multiple Industries.</h2>
-      <p>Explore the industries our tools can support.</p>
-    </div>
-
-    <div class="grid">
-      <div class="card"><h3>Accounting</h3><p>Financial document drafting and organisation.</p></div>
-      <div class="card"><h3>Retail & E-commerce</h3><p>Product and customer communication.</p></div>
-      <div class="card"><h3>Restaurants</h3><p>Menu and customer feedback assistance.</p></div>
-      <div class="card"><h3>Real Estate</h3><p>Property descriptions and enquiry drafts.</p></div>
-      <div class="card"><h3>Education</h3><p>Administrative and communication tools.</p></div>
-      <div class="card"><h3>Manufacturing</h3><p>Business documentation assistance.</p></div>
-    </div>
-  </section>
-
-  <section class="section" style="text-align:center">
-    <h2>Start with BizPilot AI</h2>
-    <p class="muted">Explore our business assistant prototype.</p>
-    <button class="btn" onclick="showDashboard()">
-      Open Dashboard →
-    </button>
-  </section>
-
+  <section class="hero"><div class="eyebrow">THE BUSINESS PRODUCTIVITY WORKSPACE</div><h1>Run Your Business Smarter</h1><p>Discover a smarter way to organise everyday business tasks. One workspace for writing, planning, customer communication and productivity.</p><button class="btn" onclick="showDashboard()">Explore BizPilot AI →</button><div class="hero-note">Explore our free business assistant prototype.</div></section>
+  <section class="section" id="features"><div class="section-heading"><h2>Everything Your Business Needs</h2><p>Practical tools for everyday business operations.</p></div><div class="grid">
+    <div class="card"><div class="card-icon">✉</div><h3>Business Communication</h3><p>Create professional emails and customer replies.</p></div>
+    <div class="card"><div class="card-icon">📢</div><h3>Marketing Assistant</h3><p>Prepare promotional messages and marketing drafts.</p></div>
+    <div class="card"><div class="card-icon">📊</div><h3>Business Planning</h3><p>Organise business ideas and planning documents.</p></div>
+    <div class="card"><div class="card-icon">🛍</div><h3>Product Assistant</h3><p>Prepare product descriptions and FAQs.</p></div>
+    <div class="card"><div class="card-icon">👥</div><h3>HR Assistant</h3><p>Draft job descriptions and interview questions.</p></div>
+    <div class="card"><div class="card-icon">🌐</div><h3>Global Workspace</h3><p>Explore tools for businesses across industries.</p></div>
+  </div></section>
+  <section class="section" id="industries"><div class="section-heading"><h2>One Platform. Multiple Industries.</h2><p>Explore the industries our tools can support.</p></div><div class="grid">
+    <div class="card"><h3>Accounting</h3><p>Financial document drafting and organisation.</p></div><div class="card"><h3>Retail &amp; E-commerce</h3><p>Product and customer communication.</p></div><div class="card"><h3>Restaurants</h3><p>Menu and customer feedback assistance.</p></div><div class="card"><h3>Real Estate</h3><p>Property descriptions and enquiry drafts.</p></div><div class="card"><h3>Education</h3><p>Administrative and communication tools.</p></div><div class="card"><h3>Manufacturing</h3><p>Business documentation assistance.</p></div>
+  </div></section>
+  <section class="section" style="text-align:center"><h2>Start with BizPilot AI</h2><p class="muted">Explore our business assistant prototype.</p><button class="btn" onclick="showDashboard()">Open Dashboard →</button></section>
 </section>
-
-<section id="dashboard" class="workspace">
-
-  <div class="dash-layout">
-
-    <aside class="sidebar">
-      <h3>BizPilot Workspace</h3>
-
-      <button class="side-link active" data-tool="overview"
-        onclick="showTool('overview',this)">◈ Overview</button>
-
-      <button class="side-link" data-tool="email"
-        onclick="showTool('email',this)">✉ Email Writer</button>
-
-      <button class="side-link" data-tool="marketing"
-        onclick="showTool('marketing',this)">◉ Marketing Writer</button>
-
-      <button class="side-link" data-tool="product"
-        onclick="showTool('product',this)">▣ Product Description</button>
-
-      <button class="side-link" data-tool="customer"
-        onclick="showTool('customer',this)">♧ Customer Reply</button>
-
-      <button class="side-link" data-tool="hr"
-        onclick="showTool('hr',this)">♙ HR Assistant</button>
-
-      <button class="side-link" data-tool="business"
-        onclick="showTool('business',this)">◫ Business Planner</button>
-
-      <button class="side-link" onclick="showHome()">
-        ← Back to Website
-      </button>
-    </aside>
-
-    <main class="main-panel">
-
-      <div id="overview">
-        <div class="dash-header">
-          <div>
-            <h1>Business Dashboard</h1>
-            <p class="muted">Welcome to your BizPilot workspace.</p>
-          </div>
-          <span class="status"><span class="status-dot"></span> Prototype active</span>
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <span class="muted">Available tools</span>
-            <strong>6</strong>
-          </div>
-
-          <div class="stat">
-            <span class="muted">Account plan</span>
-            <strong>Free</strong>
-          </div>
-
-          <div class="stat">
-            <span class="muted">Drafts this session</span>
-            <strong id="draftCount">0</strong>
-          </div>
-        </div>
-
-        <h2>Choose a business tool</h2>
-
-        <div class="grid">
-          <div class="card tool-card">
-            <h3>Email Writer</h3>
-            <p>Draft professional emails.</p>
-            <button class="btn" onclick="openTool('email')">Open</button>
-          </div>
-
-          <div class="card tool-card">
-            <h3>Marketing Writer</h3>
-            <p>Create marketing drafts.</p>
-            <button class="btn" onclick="openTool('marketing')">Open</button>
-          </div>
-
-          <div class="card tool-card">
-            <h3>Product Description</h3>
-            <p>Prepare product content.</p>
-            <button class="btn" onclick="openTool('product')">Open</button>
-          </div>
-
-          <div class="card tool-card">
-            <h3>Customer Reply</h3>
-            <p>Draft customer responses.</p>
-            <button class="btn" onclick="openTool('customer')">Open</button>
-          </div>
-
-          <div class="card tool-card">
-            <h3>HR Assistant</h3>
-            <p>Draft job descriptions.</p>
-            <button class="btn" onclick="openTool('hr')">Open</button>
-          </div>
-
-          <div class="card tool-card">
-            <h3>Business Planner</h3>
-            <p>Organise business plans.</p>
-            <button class="btn" onclick="openTool('business')">Open</button>
-          </div>
-        </div>
+<section id="dashboard" class="workspace"><div class="dash-layout">
+  <aside class="sidebar"><h3>BizPilot Workspace</h3>
+    <button class="side-link active" data-tool="overview" onclick="showTool('overview',this)">◈ Overview</button>
+    <button class="side-link" data-tool="email" onclick="showTool('email',this)">✉ Email Writer</button>
+    <button class="side-link" data-tool="marketing" onclick="showTool('marketing',this)">◉ Marketing Writer</button>
+    <button class="side-link" data-tool="product" onclick="showTool('product',this)">▣ Product Description</button>
+    <button class="side-link" data-tool="customer" onclick="showTool('customer',this)">♧ Customer Reply</button>
+    <button class="side-link" data-tool="hr" onclick="showTool('hr',this)">♙ HR Assistant</button>
+    <button class="side-link" data-tool="business" onclick="showTool('business',this)">◫ Business Planner</button>
+    <button class="side-link" onclick="showHome()">← Back to Website</button>
+  </aside>
+  <main class="main-panel">
+    <div id="overview"><div class="dash-header"><div><h1>Business Dashboard</h1><p class="muted">Welcome to your BizPilot workspace.</p></div><span class="status"><span class="status-dot"></span> Demo mode active</span></div>
+      <div class="stats"><div class="stat"><span class="muted">Available tools</span><strong>6</strong></div><div class="stat"><span class="muted">Account plan</span><strong>Free demo</strong></div><div class="stat"><span class="muted">Drafts this session</span><strong id="draftCount">0</strong></div></div>
+      <h2>Choose a business tool</h2><div class="grid">
+        <div class="card tool-card"><h3>Email Writer</h3><p>Draft professional emails.</p><button class="btn" onclick="openTool('email')">Open</button></div>
+        <div class="card tool-card"><h3>Marketing Writer</h3><p>Create marketing drafts.</p><button class="btn" onclick="openTool('marketing')">Open</button></div>
+        <div class="card tool-card"><h3>Product Description</h3><p>Prepare product content.</p><button class="btn" onclick="openTool('product')">Open</button></div>
+        <div class="card tool-card"><h3>Customer Reply</h3><p>Draft customer responses.</p><button class="btn" onclick="openTool('customer')">Open</button></div>
+        <div class="card tool-card"><h3>HR Assistant</h3><p>Draft recruitment content.</p><button class="btn" onclick="openTool('hr')">Open</button></div>
+        <div class="card tool-card"><h3>Business Planner</h3><p>Organise business plans.</p><button class="btn" onclick="openTool('business')">Open</button></div>
       </div>
-
-      <div id="toolPanel" hidden>
-        <div class="dash-header">
-          <div>
-            <h2 id="toolTitle">Business Assistant</h2>
-            <p class="muted" id="toolDescription"></p>
-          </div>
-          <button class="btn btn-outline" onclick="openTool('overview')">
-            ← Overview
-          </button>
-        </div>
-
-        <div class="tool-area">
-          <label for="industry">Select industry</label>
-
-          <select id="industry">
-            <option>Accounting</option>
-            <option>Retail & E-commerce</option>
-            <option>Restaurant</option>
-            <option>Real Estate</option>
-            <option>Education</option>
-            <option>Technology</option>
-            <option>Healthcare Administration</option>
-            <option>Manufacturing</option>
-            <option>Logistics</option>
-            <option>Other</option>
-          </select>
-
-          <label for="details">Describe your requirement</label>
-
-          <textarea id="details" maxlength="3000"
-            placeholder="Describe your business task (maximum 3,000 characters)..."></textarea>
-
-          <div class="muted" style="text-align:right;font-size:12px">
-            <span id="charCount">0</span>/3000 characters
-          </div>
-
-          <button class="btn generate" id="generateBtn"
-            onclick="generateContent()">
-            Generate Draft
-          </button>
-
-          <div id="feedback" class="feedback" role="status"
-            aria-live="polite"></div>
-
-          <div id="output" class="output" aria-live="polite">
-            <div class="output-heading">Your draft</div>
-            <div id="outputText"></div>
-          </div>
-
-          <button id="copyBtn" class="btn"
-            style="display:none;margin-top:12px"
-            onclick="copyContent()">
-            Copy Draft
-          </button>
-
-          <div class="notice">
-            <strong>Prototype notice:</strong>
-            This version uses predefined templates, not a live AI model.
-            Drafts may contain placeholders and should be reviewed before use.
-            Do not enter confidential customer, personal, medical or financial
-            information. This prototype does not provide professional
-            accounting, legal or HR advice.
-          </div>
-        </div>
+    </div>
+    <div id="toolPanel" hidden><div class="dash-header"><div><h2 id="toolTitle">Business Assistant</h2><p class="muted" id="toolDescription"></p></div><button class="btn btn-outline" onclick="openTool('overview')">← Overview</button></div>
+      <div class="tool-area"><label for="industry">Select industry</label><select id="industry"><option>Accounting</option><option>Retail &amp; E-commerce</option><option>Restaurant</option><option>Real Estate</option><option>Education</option><option>Technology</option><option>Healthcare Administration</option><option>Manufacturing</option><option>Logistics</option><option>Other</option></select>
+        <label for="details">Describe your requirement</label><textarea id="details" maxlength="3000" placeholder="Describe your business task (maximum 3,000 characters)..."></textarea><div class="muted" style="text-align:right;font-size:12px"><span id="charCount">0</span>/3000 characters</div>
+        <button class="btn generate" id="generateBtn" onclick="generateContent()">Generate Demo Draft</button><div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+        <div id="output" class="output" aria-live="polite"><div class="output-heading">Your demo draft</div><div id="outputText"></div></div>
+        <button id="copyBtn" class="btn" style="display:none;margin-top:12px" onclick="copyContent()">Copy Draft</button>
+        <div class="notice"><strong>Prototype notice:</strong> This version uses local templates, not a live AI model. Drafts may contain placeholders and should be reviewed before use. Do not enter confidential customer, personal, medical or financial information. This prototype does not provide professional accounting, legal or HR advice.</div>
       </div>
-
-    </main>
-  </div>
-</section>
-
-<footer>
-  <div class="logo">BizPilot <span>AI.</span></div>
-  <p>One Platform. Every Business. Smarter Work.</p>
-  <p>Prototype Version 1.1 · © 2026 BizPilot AI</p>
-  <p>Demonstration project. No live AI connection or business accounts.</p>
-</footer>
-
+    </div>
+  </main>
+</div></section>
+<footer><div class="logo">BizPilot <span>AI.</span></div><p>One Platform. Every Business. Smarter Work.</p><p>Prototype Version 2.0 · © 2026 BizPilot AI</p><p>Demo mode only. No live AI connection, user accounts, database or payments.</p></footer>
 <script>
-"use strict";
-
-let currentTool = "email";
-let draftCount = 0;
-let currentDraft = "";
-
-const tools = {
-  email: {
-    title:"Business Email Writer",
-    description:"Prepare professional business email drafts."
-  },
-  marketing: {
-    title:"Marketing Assistant",
-    description:"Prepare promotional content for your business."
-  },
-  product: {
-    title:"Product Description Writer",
-    description:"Create structured product descriptions."
-  },
-  customer: {
-    title:"Customer Support Assistant",
-    description:"Prepare polite customer responses."
-  },
-  hr: {
-    title:"HR Assistant",
-    description:"Create recruitment and job description drafts."
-  },
-  business: {
-    title:"Business Planner",
-    description:"Organise business planning documents."
-  }
+'use strict';
+let currentTool='email';
+let draftCount=0;
+let currentDraft='';
+const $=id=>document.getElementById(id);
+const tools={
+ email:{title:'Business Email Writer',description:'Prepare professional business email drafts.'},
+ marketing:{title:'Marketing Assistant',description:'Prepare promotional content for your business.'},
+ product:{title:'Product Description Writer',description:'Create structured product descriptions.'},
+ customer:{title:'Customer Support Assistant',description:'Prepare polite customer responses.'},
+ hr:{title:'HR Assistant',description:'Create recruitment and job description drafts.'},
+ business:{title:'Business Planner',description:'Organise a business idea into a simple plan.'}
 };
-
-const $ = id => document.getElementById(id);
-
-function showDashboard() {
-  $("home").style.display = "none";
-  $("dashboard").classList.add("active");
-  showTool("overview");
-  window.scrollTo(0,0);
+function showDashboard(){ $('home').style.display='none';$('dashboard').classList.add('active');showTool('overview');window.scrollTo(0,0); }
+function showHome(){ $('home').style.display='block';$('dashboard').classList.remove('active');window.scrollTo(0,0); }
+function openTool(id){showTool(id);}
+function showTool(id,clickedButton){
+ if(id!=='overview'&&!tools[id]){showFeedback('This tool is not available.',true);return;}
+ $('overview').hidden=id!=='overview';$('toolPanel').hidden=id==='overview';
+ document.querySelectorAll('.side-link').forEach(button=>button.classList.toggle('active',button.dataset.tool===id));
+ if(clickedButton&&clickedButton.dataset.tool){clickedButton.classList.add('active');}
+ if(id!=='overview'){currentTool=id;$('toolTitle').textContent=tools[id].title;$('toolDescription').textContent=tools[id].description;clearOutput();}
+ $('feedback').textContent='';
 }
-
-function showHome() {
-  $("home").style.display = "block";
-  $("dashboard").classList.remove("active");
-  window.scrollTo(0,0);
+function showFeedback(message,isError=false){const feedback=$('feedback');feedback.textContent=message;feedback.style.color=isError?'#b42318':'#16865a';}
+function clearOutput(){currentDraft='';$('output').style.display='none';$('copyBtn').style.display='none';$('outputText').textContent='';}
+$('details').addEventListener('input',function(){$('charCount').textContent=this.value.length;});
+function generateContent(){
+ const details=$('details').value.trim();const industry=$('industry').value;
+ if(!details){showFeedback('Please describe your requirement first.',true);$('details').focus();return;}
+ if(details.length>3000){showFeedback('Your description is too long.',true);return;}
+ const templates={
+  email:()=>`SUBJECT: Business Communication\n\nDear [Recipient],\n\nWe are contacting you regarding the following matter:\n\n${details}\n\nWe appreciate your time and look forward to discussing this matter.\n\nBest regards,\n[Business Name]`,
+  marketing:()=>`MARKETING CONTENT\n\nIndustry: ${industry}\n\nCAMPAIGN OVERVIEW\n${details}\n\nSUGGESTED MESSAGE\nDiscover [Business Name] — your destination for [main product or service]. We focus on quality, helpful service and solutions designed around your needs.\n\nCALL TO ACTION\nContact our team or visit us to learn more.\n\nNote: Add verified offers, contact details and product claims before publishing.`,
+  product:()=>`PRODUCT DESCRIPTION\n\nIndustry: ${industry}\n\nPRODUCT INFORMATION\n${details}\n\nKEY FEATURES\n1. [Add a verified product feature]\n2. [Explain a customer benefit]\n3. [Add accurate specifications]\n\nADDITIONAL INFORMATION\nPrice: [Add price]\nAvailability: [Add availability]\n\nReview all placeholders and confirm product claims before publishing.`,
+  customer:()=>`CUSTOMER RESPONSE\n\nHello [Customer Name],\n\nThank you for contacting [Business Name]. We appreciate you bringing this to our attention.\n\nRegarding your message:\n${details}\n\nWe will review the matter and follow up with the relevant information. Please share your order or reference number through our official support channel if needed.\n\nThank you for your patience.\nRegards,\nCustomer Support Team`,
+  hr:()=>`JOB DESCRIPTION DRAFT\n\nIndustry: ${industry}\nRole / requirement:\n${details}\n\nKEY RESPONSIBILITIES\n• [Add the main responsibility]\n• [Add a role-specific task]\n• [Add reporting or teamwork expectations]\n\nPREFERRED QUALIFICATIONS\n• [Add relevant education or experience]\n• [Add role-related skills]\n\nEmployment details: [Add location, schedule and terms]\n\nReview for fairness and compliance with applicable employment rules before use.`,
+  business:()=>`BASIC BUSINESS PLAN\n\nIndustry: ${industry}\nBusiness idea / goal:\n${details}\n\n1. CUSTOMER NEED\n[Describe the customer problem your business aims to solve.]\n\n2. PRODUCT OR SERVICE\n[Explain what you will offer and its main benefit.]\n\n3. TARGET CUSTOMERS\n[Describe the people or organisations you intend to serve.]\n\n4. MARKETING APPROACH\n[Explain how customers will discover your business.]\n\n5. COSTS AND RESOURCES\n[List expected costs and resources. Verify figures independently.]\n\n6. NEXT STEPS\n[Choose one small step to research or test first.]`
+ };
+ if(!templates[currentTool]){showFeedback('Please choose a tool first.',true);return;}
+ currentDraft=templates[currentTool]();$('outputText').textContent=currentDraft;$('output').style.display='block';$('copyBtn').style.display='inline-block';draftCount++;$('draftCount').textContent=draftCount;showFeedback('Demo draft created. Review and edit it before use.');
 }
-
-function openTool(id) {
-  showTool(id);
-}
-
-function showTool(id) {
-  if (id !== "overview" && !tools[id]) {
-    showFeedback("This tool is not available.", true);
-    return;
-  }
-
-  $("overview").hidden = id !== "overview";
-  $("toolPanel").hidden = id === "overview";
-
-  document.querySelectorAll(".side-link").forEach(button => {
-    button.classList.toggle("active", button.dataset.tool === id);
-  });
-
-  if (id !== "overview") {
-    currentTool = id;
-    $("toolTitle").textContent = tools[id].title;
-    $("toolDescription").textContent = tools[id].description;
-    clearOutput();
-  }
-
-  $("feedback").textContent = "";
-}
-
-function showFeedback(message, isError = false) {
-  const feedback = $("feedback");
-  feedback.textContent = message;
-  feedback.style.color = isError ? "#b42318" : "#16865a";
-}
-
-function clearOutput() {
-  currentDraft = "";
-  $("output").style.display = "none";
-  $("copyBtn").style.display = "none";
-  $("outputText").textContent = "";
-}
-
-$("details").addEventListener("input", function() {
-  $("charCount").textContent = this.value.length;
-});
-
-function generateContent() {
-  try {
-    const details = $("details").value.trim();
-    const industry = $("industry").value;
-
-    if (!details) {
-      showFeedback("Please describe your requirement first.", true);
-      $("details").focus();
-      return;
-    }
-
-    if (details.length > 3000) {
-      showFeedback("Your description is too long.", true);
-      return;
-    }
-
-    const templates = {
-      email:
-`SUBJECT: Business Communication
-
-Dear [Recipient],
-
-We are contacting you regarding the following matter:
-
-${details}
-
-We appreciate your time and look forward to discussing this matter.
-
-Best regards,
-[Business Name]`,
-
-      marketing:
-`MARKETING CONTENT
-
-Industry: ${industry}
-
-Campaign details:
-${details}
-
-Discover our services and explore how we can help you.
-
-Contact our team to learn more.
-
-[Business Name]`,
-
-      product:
-`PRODUCT DESCRIPTION
-
-Industry: ${industry}
-
-Product information:
-${details}
-
-KEY FEATURES
-
-1. [Add product feature]
-2. [Add customer benefit]
-3. [Add product specifications]
-
-ADDITIONAL INFORMATION
-
-[Add price, availability and relevant deta
+async function copyContent(){if(!currentDraft){showFeedback('Generate a draft before copying.',true);return;}try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(currentDraft);}else{const temp=document.createElement('textarea');temp.value=currentDraft;temp.style.position='fixed';temp.style.opacity='0';document.body.appendChild(temp);temp.select();const copied=document.execCommand('copy');temp.remove();if(!copied)throw new Error('Copy command unavailable');}showFeedback('Draft copied to clipboard.');}catch(error){showFeedback('Copy was not available in this browser. Select the draft text and copy it manually.',true);}}
+</script>
+</body>
+          </html>
+          
