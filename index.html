@@ -4,41 +4,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="BizPilot AI - Smart business tools for businesses around the world.">
+
+<meta name="description" content="BizPilot AI is a business productivity workspace with tools for communication, marketing, HR, product descriptions and planning.">
+<meta name="theme-color" content="#10264b">
+
+<meta property="og:title" content="BizPilot AI | Business Workspace">
+<meta property="og:description" content="One Platform. Every Business. Smarter Work.">
+<meta property="og:type" content="website">
+
 <title>BizPilot AI | Business Intelligence Workspace</title>
 
 <style>
 :root {
   --navy:#10264b;
+  --navy-light:#173f78;
   --blue:#2563eb;
+  --blue-dark:#174bb6;
   --light:#f3f6fc;
-  --white:#ffffff;
+  --white:#fff;
+  --text:#17243b;
   --muted:#718096;
   --border:#e4eaf3;
   --green:#16865a;
+  --shadow:0 12px 30px #152c5010;
 }
 
 * { box-sizing:border-box; }
 
+html { scroll-behavior:smooth; }
+
 body {
   margin:0;
   font-family:Inter,Arial,sans-serif;
-  color:#17243b;
+  color:var(--text);
   background:var(--light);
 }
 
 button,input,textarea,select { font:inherit; }
-
 button { cursor:pointer; }
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline:3px solid #93baff;
+  outline-offset:3px;
+}
+
 .navbar {
-  height:70px;
-  padding:0 7%;
+  min-height:70px;
+  padding:12px 7%;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:15px;
   background:white;
   border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
 .logo {
@@ -46,13 +71,14 @@ button { cursor:pointer; }
   font-weight:800;
   color:var(--navy);
   letter-spacing:-1px;
+  white-space:nowrap;
 }
 
 .logo span { color:var(--blue); }
 
 .navlinks {
   display:flex;
-  gap:25px;
+  gap:22px;
   align-items:center;
 }
 
@@ -72,9 +98,13 @@ button { cursor:pointer; }
   padding:12px 20px;
   border-radius:8px;
   font-weight:600;
+  transition:background .2s,transform .2s;
 }
 
-.btn:hover { background:#174bb6; }
+.btn:hover {
+  background:var(--blue-dark);
+  transform:translateY(-1px);
+}
 
 .btn-outline {
   background:white;
@@ -82,10 +112,15 @@ button { cursor:pointer; }
   border:1px solid var(--border);
 }
 
+.btn-outline:hover {
+  background:#edf3ff;
+  color:var(--blue);
+}
+
 .hero {
-  background:linear-gradient(125deg,#10264b,#173f78);
+  background:linear-gradient(125deg,var(--navy),var(--navy-light));
   color:white;
-  padding:90px 8%;
+  padding:95px 8%;
   text-align:center;
 }
 
@@ -105,12 +140,18 @@ button { cursor:pointer; }
 
 .hero p {
   color:#d4e1f5;
-  max-width:610px;
+  max-width:620px;
   margin:0 auto 30px;
   line-height:1.8;
 }
 
 .hero .btn { padding:15px 27px; }
+
+.hero-note {
+  color:#b9cbe4;
+  font-size:12px;
+  margin-top:18px;
+}
 
 .section {
   padding:65px 7%;
@@ -124,12 +165,11 @@ button { cursor:pointer; }
 }
 
 .section-heading h2 { font-size:30px; }
-
 .section-heading p { color:var(--muted); }
 
 .grid {
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:20px;
 }
 
@@ -139,11 +179,12 @@ button { cursor:pointer; }
   border:1px solid var(--border);
   border-radius:13px;
   transition:.2s;
+  min-width:0;
 }
 
 .card:hover {
-  transform:translateY(-4px);
-  box-shadow:0 12px 30px #152c5010;
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
 }
 
 .card-icon {
@@ -165,7 +206,7 @@ button { cursor:pointer; }
 
 .workspace {
   display:none;
-  max-width:1250px;
+  max-width:1300px;
   margin:30px auto;
   padding:0 20px;
 }
@@ -174,7 +215,7 @@ button { cursor:pointer; }
 
 .dash-layout {
   display:grid;
-  grid-template-columns:225px 1fr;
+  grid-template-columns:225px minmax(0,1fr);
   gap:22px;
 }
 
@@ -184,9 +225,17 @@ button { cursor:pointer; }
   border-radius:13px;
 }
 
-.sidebar { padding:20px; }
+.sidebar {
+  padding:20px;
+  align-self:start;
+  position:sticky;
+  top:90px;
+}
 
-.sidebar h3 { font-size:15px; }
+.sidebar h3 {
+  font-size:15px;
+  margin-top:5px;
+}
 
 .side-link {
   width:100%;
@@ -204,7 +253,10 @@ button { cursor:pointer; }
   color:var(--blue);
 }
 
-.main-panel { padding:28px; min-width:0; }
+.main-panel {
+  padding:28px;
+  min-width:0;
+}
 
 .dash-header {
   display:flex;
@@ -219,11 +271,30 @@ button { cursor:pointer; }
 
 .muted { color:var(--muted); }
 
+.status {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--green);
+  background:#eaf8f1;
+  padding:8px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.status-dot {
+  width:7px;
+  height:7px;
+  background:var(--green);
+  border-radius:50%;
+}
+
 .stats {
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:14px;
-  margin-bottom:25px;
+  margin-bottom:28px;
 }
 
 .stat {
@@ -238,6 +309,17 @@ button { cursor:pointer; }
   font-size:25px;
   margin-top:10px;
   color:var(--navy);
+}
+
+.tool-card {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.tool-card .btn {
+  align-self:flex-start;
+  margin-top:5px;
 }
 
 .tool-area {
@@ -259,12 +341,13 @@ select,textarea,input {
   border:1px solid #d8e1ef;
   border-radius:8px;
   background:white;
-  color:#17243b;
+  color:var(--text);
 }
 
 textarea {
-  min-height:115px;
+  min-height:130px;
   resize:vertical;
+  line-height:1.6;
 }
 
 .generate { margin-top:20px; }
@@ -274,21 +357,38 @@ textarea {
   margin-top:22px;
   padding:18px;
   background:#f2f6ff;
+  border:1px solid #dce7fb;
   border-radius:10px;
   white-space:pre-wrap;
   line-height:1.7;
   overflow-wrap:anywhere;
 }
 
+.output-heading {
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:12px;
+}
+
+.feedback {
+  min-height:22px;
+  margin-top:10px;
+  font-size:13px;
+  color:var(--green);
+}
+
 .notice {
   background:#fff8e8;
   border:1px solid #f2dfae;
-  padding:12px;
+  padding:13px;
   border-radius:8px;
   font-size:12px;
   color:#72551a;
-  margin-top:15px;
+  margin-top:18px;
+  line-height:1.6;
 }
+
+.hidden { display:none !important; }
 
 footer {
   text-align:center;
@@ -296,25 +396,46 @@ footer {
   background:var(--navy);
   color:#d5e1f3;
   font-size:13px;
+  margin-top:45px;
 }
 
-@media(max-width:800px) {
-  .grid { grid-template-columns:repeat(2,1fr); }
+footer .logo { color:white; }
+
+footer a {
+  color:#d5e1f3;
+  text-decoration:none;
+}
+
+footer a:hover { text-decoration:underline; }
+
+@media(max-width:850px) {
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .dash-layout { grid-template-columns:1fr; }
-  .sidebar { display:flex; flex-wrap:wrap; gap:5px; }
+  .sidebar {
+    position:static;
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+  }
   .sidebar h3 { width:100%; }
   .side-link { width:auto; }
 }
 
 @media(max-width:550px) {
-  .navbar { padding:0 15px; }
+  .navbar { padding:12px 15px; }
   .navlinks { gap:10px; }
   .navlinks a { font-size:12px; }
   .navlinks .hide-mobile { display:none; }
+  .navlinks .btn { padding:10px 12px; font-size:12px; }
+  .logo { font-size:20px; }
   .hero { padding:65px 20px; }
   .grid,.stats { grid-template-columns:1fr; }
   .section { padding:45px 18px; }
   .main-panel { padding:16px; }
+  .tool-area { padding:15px; }
+  .sidebar { padding:12px; }
+  .side-link { font-size:12px; padding:10px; }
+  .dash-header h1 { font-size:25px; }
 }
 </style>
 </head>
@@ -322,13 +443,16 @@ footer {
 <body>
 
 <header class="navbar">
-  <div class="logo">BizPilot <span>AI.</span></div>
+  <a class="logo" href="#" onclick="showHome();return false;"
+     aria-label="BizPilot AI home">
+    BizPilot <span>AI.</span>
+  </a>
 
-  <nav class="navlinks">
-    <a onclick="showHome()">Home</a>
+  <nav class="navlinks" aria-label="Main navigation">
+    <a href="#" onclick="showHome();return false;">Home</a>
     <a class="hide-mobile" href="#industries">Industries</a>
     <a class="hide-mobile" href="#features">Features</a>
-    <a onclick="showDashboard()">Dashboard</a>
+    <a href="#" onclick="showDashboard();return false;">Dashboard</a>
     <button class="btn" onclick="showDashboard()">Get Started</button>
   </nav>
 </header>
@@ -336,19 +460,23 @@ footer {
 <section id="home">
 
   <section class="hero">
-    <div class="eyebrow">THE BUSINESS INTELLIGENCE WORKSPACE</div>
+    <div class="eyebrow">THE BUSINESS PRODUCTIVITY WORKSPACE</div>
 
-    <h1>Run Your Business Smarter with AI</h1>
+    <h1>Run Your Business Smarter</h1>
 
     <p>
-      Discover a smarter way to manage everyday business
-      tasks. One workspace for writing, planning,
-      customer communication and productivity.
+      Discover a smarter way to organise everyday business tasks.
+      One workspace for writing, planning, customer communication
+      and productivity.
     </p>
 
     <button class="btn" onclick="showDashboard()">
       Explore BizPilot AI →
     </button>
+
+    <div class="hero-note">
+      Explore our free business assistant prototype.
+    </div>
   </section>
 
   <section class="section" id="features">
@@ -358,7 +486,6 @@ footer {
     </div>
 
     <div class="grid">
-
       <div class="card">
         <div class="card-icon">✉</div>
         <h3>Business Communication</h3>
@@ -392,23 +519,22 @@ footer {
       <div class="card">
         <div class="card-icon">🌐</div>
         <h3>Global Workspace</h3>
-        <p>Tools designed for businesses across industries.</p>
+        <p>Explore tools for businesses across industries.</p>
       </div>
-
     </div>
   </section>
 
   <section class="section" id="industries">
     <div class="section-heading">
       <h2>One Platform. Multiple Industries.</h2>
-      <p>Our planned industry-specific solutions.</p>
+      <p>Explore the industries our tools can support.</p>
     </div>
 
     <div class="grid">
-      <div class="card"><h3>Accounting</h3><p>Financial organisation and document assistance.</p></div>
+      <div class="card"><h3>Accounting</h3><p>Financial document drafting and organisation.</p></div>
       <div class="card"><h3>Retail & E-commerce</h3><p>Product and customer communication.</p></div>
       <div class="card"><h3>Restaurants</h3><p>Menu and customer feedback assistance.</p></div>
-      <div class="card"><h3>Real Estate</h3><p>Property and enquiry assistance.</p></div>
+      <div class="card"><h3>Real Estate</h3><p>Property descriptions and enquiry drafts.</p></div>
       <div class="card"><h3>Education</h3><p>Administrative and communication tools.</p></div>
       <div class="card"><h3>Manufacturing</h3><p>Business documentation assistance.</p></div>
     </div>
@@ -417,7 +543,9 @@ footer {
   <section class="section" style="text-align:center">
     <h2>Start with BizPilot AI</h2>
     <p class="muted">Explore our business assistant prototype.</p>
-    <button class="btn" onclick="showDashboard()">Open Dashboard →</button>
+    <button class="btn" onclick="showDashboard()">
+      Open Dashboard →
+    </button>
   </section>
 
 </section>
@@ -429,33 +557,26 @@ footer {
     <aside class="sidebar">
       <h3>BizPilot Workspace</h3>
 
-      <button class="side-link active" onclick="showTool('overview',this)">
-        ◈ Overview
-      </button>
+      <button class="side-link active" data-tool="overview"
+        onclick="showTool('overview',this)">◈ Overview</button>
 
-      <button class="side-link" onclick="showTool('email',this)">
-        ✉ Email Writer
-      </button>
+      <button class="side-link" data-tool="email"
+        onclick="showTool('email',this)">✉ Email Writer</button>
 
-      <button class="side-link" onclick="showTool('marketing',this)">
-        ◉ Marketing Writer
-      </button>
+      <button class="side-link" data-tool="marketing"
+        onclick="showTool('marketing',this)">◉ Marketing Writer</button>
 
-      <button class="side-link" onclick="showTool('product',this)">
-        ▣ Product Description
-      </button>
+      <button class="side-link" data-tool="product"
+        onclick="showTool('product',this)">▣ Product Description</button>
 
-      <button class="side-link" onclick="showTool('customer',this)">
-        ♧ Customer Reply
-      </button>
+      <button class="side-link" data-tool="customer"
+        onclick="showTool('customer',this)">♧ Customer Reply</button>
 
-      <button class="side-link" onclick="showTool('hr',this)">
-        ♙ HR Assistant
-      </button>
+      <button class="side-link" data-tool="hr"
+        onclick="showTool('hr',this)">♙ HR Assistant</button>
 
-      <button class="side-link" onclick="showTool('business',this)">
-        ◫ Business Planner
-      </button>
+      <button class="side-link" data-tool="business"
+        onclick="showTool('business',this)">◫ Business Planner</button>
 
       <button class="side-link" onclick="showHome()">
         ← Back to Website
@@ -470,7 +591,7 @@ footer {
             <h1>Business Dashboard</h1>
             <p class="muted">Welcome to your BizPilot workspace.</p>
           </div>
-          <span class="muted">Prototype • Free</span>
+          <span class="status"><span class="status-dot"></span> Prototype active</span>
         </div>
 
         <div class="stats">
@@ -485,45 +606,45 @@ footer {
           </div>
 
           <div class="stat">
-            <span class="muted">AI connections</span>
-            <strong>0</strong>
+            <span class="muted">Drafts this session</span>
+            <strong id="draftCount">0</strong>
           </div>
         </div>
 
         <h2>Choose a business tool</h2>
 
         <div class="grid">
-          <div class="card">
+          <div class="card tool-card">
             <h3>Email Writer</h3>
             <p>Draft professional emails.</p>
             <button class="btn" onclick="openTool('email')">Open</button>
           </div>
 
-          <div class="card">
+          <div class="card tool-card">
             <h3>Marketing Writer</h3>
             <p>Create marketing drafts.</p>
             <button class="btn" onclick="openTool('marketing')">Open</button>
           </div>
 
-          <div class="card">
+          <div class="card tool-card">
             <h3>Product Description</h3>
             <p>Prepare product content.</p>
             <button class="btn" onclick="openTool('product')">Open</button>
           </div>
 
-          <div class="card">
+          <div class="card tool-card">
             <h3>Customer Reply</h3>
             <p>Draft customer responses.</p>
             <button class="btn" onclick="openTool('customer')">Open</button>
           </div>
 
-          <div class="card">
+          <div class="card tool-card">
             <h3>HR Assistant</h3>
             <p>Draft job descriptions.</p>
             <button class="btn" onclick="openTool('hr')">Open</button>
           </div>
 
-          <div class="card">
+          <div class="card tool-card">
             <h3>Business Planner</h3>
             <p>Organise business plans.</p>
             <button class="btn" onclick="openTool('business')">Open</button>
@@ -532,15 +653,22 @@ footer {
       </div>
 
       <div id="toolPanel" hidden>
-        <h2 id="toolTitle">Business Assistant</h2>
-        <p class="muted" id="toolDescription"></p>
+        <div class="dash-header">
+          <div>
+            <h2 id="toolTitle">Business Assistant</h2>
+            <p class="muted" id="toolDescription"></p>
+          </div>
+          <button class="btn btn-outline" onclick="openTool('overview')">
+            ← Overview
+          </button>
+        </div>
 
         <div class="tool-area">
           <label for="industry">Select industry</label>
 
           <select id="industry">
             <option>Accounting</option>
-            <option>Retail</option>
+            <option>Retail & E-commerce</option>
             <option>Restaurant</option>
             <option>Real Estate</option>
             <option>Education</option>
@@ -553,14 +681,25 @@ footer {
 
           <label for="details">Describe your requirement</label>
 
-          <textarea id="details"
-            placeholder="Describe your business task..."></textarea>
+          <textarea id="details" maxlength="3000"
+            placeholder="Describe your business task (maximum 3,000 characters)..."></textarea>
 
-          <button class="btn generate" onclick="generateContent()">
+          <div class="muted" style="text-align:right;font-size:12px">
+            <span id="charCount">0</span>/3000 characters
+          </div>
+
+          <button class="btn generate" id="generateBtn"
+            onclick="generateContent()">
             Generate Draft
           </button>
 
-          <div id="output" class="output"></div>
+          <div id="feedback" class="feedback" role="status"
+            aria-live="polite"></div>
+
+          <div id="output" class="output" aria-live="polite">
+            <div class="output-heading">Your draft</div>
+            <div id="outputText"></div>
+          </div>
 
           <button id="copyBtn" class="btn"
             style="display:none;margin-top:12px"
@@ -569,9 +708,12 @@ footer {
           </button>
 
           <div class="notice">
+            <strong>Prototype notice:</strong>
             This version uses predefined templates, not a live AI model.
-            Review all drafts before using them in your business.
-            Do not enter confidential customer or financial information.
+            Drafts may contain placeholders and should be reviewed before use.
+            Do not enter confidential customer, personal, medical or financial
+            information. This prototype does not provide professional
+            accounting, legal or HR advice.
           </div>
         </div>
       </div>
@@ -581,13 +723,18 @@ footer {
 </section>
 
 <footer>
-  <div class="logo" style="color:white">BizPilot <span>AI.</span></div>
+  <div class="logo">BizPilot <span>AI.</span></div>
   <p>One Platform. Every Business. Smarter Work.</p>
-  <p>© 2026 BizPilot AI. Prototype Version.</p>
+  <p>Prototype Version 1.1 · © 2026 BizPilot AI</p>
+  <p>Demonstration project. No live AI connection or business accounts.</p>
 </footer>
 
 <script>
+"use strict";
+
 let currentTool = "email";
+let draftCount = 0;
+let currentDraft = "";
 
 const tools = {
   email: {
@@ -616,16 +763,18 @@ const tools = {
   }
 };
 
+const $ = id => document.getElementById(id);
+
 function showDashboard() {
-  document.getElementById("home").style.display="none";
-  document.getElementById("dashboard").classList.add("active");
+  $("home").style.display = "none";
+  $("dashboard").classList.add("active");
   showTool("overview");
   window.scrollTo(0,0);
 }
 
 function showHome() {
-  document.getElementById("home").style.display="block";
-  document.getElementById("dashboard").classList.remove("active");
+  $("home").style.display = "block";
+  $("dashboard").classList.remove("active");
   window.scrollTo(0,0);
 }
 
@@ -633,52 +782,83 @@ function openTool(id) {
   showTool(id);
 }
 
-function showTool(id,button) {
-  document.getElementById("overview").hidden = id!=="overview";
-  document.getElementById("toolPanel").hidden = id==="overview";
-
-  document.querySelectorAll(".side-link").forEach(b=>{
-    b.classList.remove("active");
-  });
-
-  if(button) button.classList.add("active");
-
-  if(id!=="overview") {
-    currentTool=id;
-    document.getElementById("toolTitle").textContent=tools[id].title;
-    document.getElementById("toolDescription").textContent=tools[id].description;
-    document.getElementById("output").style.display="none";
-    document.getElementById("copyBtn").style.display="none";
-  }
-}
-
-function generateContent() {
-  const details=document.getElementById("details").value.trim();
-  const industry=document.getElementById("industry").value;
-
-  if(!details) {
-    alert("Please describe your requirement.");
+function showTool(id) {
+  if (id !== "overview" && !tools[id]) {
+    showFeedback("This tool is not available.", true);
     return;
   }
 
-  const templates={
-    email:
+  $("overview").hidden = id !== "overview";
+  $("toolPanel").hidden = id === "overview";
+
+  document.querySelectorAll(".side-link").forEach(button => {
+    button.classList.toggle("active", button.dataset.tool === id);
+  });
+
+  if (id !== "overview") {
+    currentTool = id;
+    $("toolTitle").textContent = tools[id].title;
+    $("toolDescription").textContent = tools[id].description;
+    clearOutput();
+  }
+
+  $("feedback").textContent = "";
+}
+
+function showFeedback(message, isError = false) {
+  const feedback = $("feedback");
+  feedback.textContent = message;
+  feedback.style.color = isError ? "#b42318" : "#16865a";
+}
+
+function clearOutput() {
+  currentDraft = "";
+  $("output").style.display = "none";
+  $("copyBtn").style.display = "none";
+  $("outputText").textContent = "";
+}
+
+$("details").addEventListener("input", function() {
+  $("charCount").textContent = this.value.length;
+});
+
+function generateContent() {
+  try {
+    const details = $("details").value.trim();
+    const industry = $("industry").value;
+
+    if (!details) {
+      showFeedback("Please describe your requirement first.", true);
+      $("details").focus();
+      return;
+    }
+
+    if (details.length > 3000) {
+      showFeedback("Your description is too long.", true);
+      return;
+    }
+
+    const templates = {
+      email:
 `SUBJECT: Business Communication
 
 Dear [Recipient],
 
-We are contacting you regarding ${details}.
+We are contacting you regarding the following matter:
+
+${details}
 
 We appreciate your time and look forward to discussing this matter.
 
 Best regards,
 [Business Name]`,
 
-    marketing:
+      marketing:
 `MARKETING CONTENT
 
 Industry: ${industry}
 
+Campaign details:
 ${details}
 
 Discover our services and explore how we can help you.
@@ -687,7 +867,7 @@ Contact our team to learn more.
 
 [Business Name]`,
 
-    product:
+      product:
 `PRODUCT DESCRIPTION
 
 Industry: ${industry}
@@ -695,54 +875,62 @@ Industry: ${industry}
 Product information:
 ${details}
 
-Key features:
+KEY FEATURES
+
 1. [Add product feature]
 2. [Add customer benefit]
-3. [Add specifications]
+3. [Add product specifications]
 
-Contact us for further details.`,
+ADDITIONAL INFORMATION
 
-    customer:
+[Add price, availability and relevant details]
+
+Contact us for further information.`,
+
+      customer:
 `CUSTOMER SUPPORT RESPONSE
 
 Dear Customer,
 
 Thank you for contacting us.
 
-Regarding your enquiry: ${details}
+Regarding your enquiry:
+
+${details}
 
 We appreciate your feedback and will be happy to assist you further.
 
 Kind regards,
 Customer Support Team`,
 
-    hr:
+      hr:
 `JOB DESCRIPTION
 
 Industry: ${industry}
 
 Position: [Job Title]
 
-Role overview:
+ROLE OVERVIEW
 ${details}
 
-Responsibilities:
+RESPONSIBILITIES
+
 1. [Add responsibility]
 2. [Add responsibility]
 3. [Add responsibility]
 
-Required skills:
-[Add required skills]
+REQUIRED SKILLS
+[Add relevant skills and qualifications]
 
-Application details:
+APPLICATION DETAILS
 [Business contact]`,
 
-    business:
+      business:
 `BUSINESS PLAN OUTLINE
 
 Industry: ${industry}
 
-Business concept:
+BUSINESS CONCEPT
 ${details}
 
 1. Business overview
@@ -754,26 +942,59 @@ ${details}
 7. Risks and opportunities
 8. Next steps
 
-All financial estimates require independent research.`
-  };
+Note: Financial estimates require independent research.`
+    };
 
-  const output=document.getElementById("output");
+    if (!templates[currentTool]) {
+      showFeedback("Unable to generate this draft.", true);
+      return;
+    }
 
-  output.textContent=templates[currentTool];
-  output.style.display="block";
+    currentDraft = templates[currentTool];
 
-  document.getElementById("copyBtn").style.display="inline-block";
+    $("outputText").textContent = currentDraft;
+    $("output").style.display = "block";
+    $("copyBtn").style.display = "inline-block";
+
+    draftCount++;
+    $("draftCount").textContent = draftCount;
+
+    showFeedback("Draft generated successfully. Review it before use.");
+  } catch (error) {
+    console.error("Draft generation error:", error);
+    showFeedback("Something went wrong. Please try again.", true);
+  }
 }
 
-function copyContent() {
-  const text=document.getElementById("output").textContent;
+async function copyContent() {
+  if (!currentDraft) {
+    showFeedback("Generate a draft before copying.", true);
+    return;
+  }
 
-  if(navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text)
-      .then(()=>alert("Draft copied!"))
-      .catch(()=>alert("Please copy the draft manually."));
-  } else {
-    alert("Please select the draft and copy it manually.");
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(currentDraft);
+    } else {
+      const temporary = document.createElement("textarea");
+      temporary.value = currentDraft;
+      temporary.style.position = "fixed";
+      temporary.style.opacity = "0";
+      document.body.appendChild(temporary);
+      temporary.select();
+
+      const successful = document.execCommand("copy");
+      temporary.remove();
+
+      if (!successful) {
+        throw new Error("Copy command was unsuccessful.");
+      }
+    }
+
+    showFeedback("Draft copied successfully.");
+  } catch (error) {
+    console.error("Copy error:", error);
+    showFeedback("Copy was not available. Please select and copy the draft manually.", true);
   }
 }
 </script>
